@@ -25,14 +25,14 @@ public class Search implements ActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        JFileChooser test = new JFileChooser(new File(getTextField().getText()));
-        File choix = new File(getTextField().getText());
+        JFileChooser fileChooser = new JFileChooser(new File(getTextField().getText()));
+        File file = new File(getTextField().getText());
         
-        if (test.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) 
+        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) 
         {
-            choix = test.getSelectedFile();
+            file = test.getSelectedFile();
         }
-        System.out.println(choix.getAbsolutePath());
-        getTextField().setText(choix.getAbsolutePath());
+        System.out.println(file.getAbsolutePath());
+        getTextField().setText(file.getAbsolutePath());
     }
 }

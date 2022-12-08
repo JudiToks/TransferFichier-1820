@@ -6,26 +6,27 @@ import javax.swing.JTextField;
 
 import code.Client;
 import code.Code;
-import graph.Transfert;
+import code.User;
+import graph.JobDone;
 
 public class Send implements ActionListener
 {
     Client client;
     JTextField textField;
-    Transfert transfert;
+    JobDone asa;
     
-    public Send(Client client , JTextField field , Transfert transfert)
+    public Send(Client client , JTextField field , JobDone asa)
     {
         this.client = client;
         this.textField = field;
-        this.transfert = transfert;
+        this.asa = asa;
     }
 
     public void actionPerformed(ActionEvent e)
     {
         try 
         {
-            client.envoyer(textField.getText() , new Code(transfert));
+            client.send(textField.getText() , new Code(asa));
         } 
         catch (Exception er) 
         {

@@ -7,7 +7,7 @@ import javax.swing.*;
 import code.Client;
 import code.User;
 import listener.*;
-import graph.Transfert;
+import graph.JobDone;
 
 public class ClientFrame extends JFrame
 {
@@ -19,7 +19,7 @@ public class ClientFrame extends JFrame
     JLabel clientLabel;
     JComboBox comboBox;
     JButton sendButton;
-    Transfert transfert;
+    JobDone asa;
     User user = new User(this);
 
 ///getters & setters
@@ -44,7 +44,7 @@ public class ClientFrame extends JFrame
         clientLabel = new JLabel("Client correspondant :");
         comboBox = new JComboBox<>(new String[]{"Client1" , "Client2" , "Client3" , "Client4" , "Client5"});
         sendButton = new JButton("Send");
-        transfert = new Transfert(panel);
+        asa = new JobDone(panel);
 
         ///setPosition
         titre.setBounds(50, 10, 300, 50);
@@ -66,16 +66,16 @@ public class ClientFrame extends JFrame
 
         comboBox.setBounds(20 , 150 , 200 , 30);
 
-        sendButton.setBounds(240 , 150 , 100 , 30);
-        sendButton.addActionListener(new Send(client , textField , transfert));
+        sendButton.setBounds(140 , 100 , 100 , 30);
+        sendButton.addActionListener(new Send(client , textField , asa));
 
         ///add
         add(titre);
         panel.add(fileLabel);
         panel.add(textField);
         panel.add(search);
-        panel.add(clientLabel);
-        panel.add(comboBox);
+        // panel.add(clientLabel);
+        // panel.add(comboBox);
         panel.add(sendButton);
         add(panel);
 

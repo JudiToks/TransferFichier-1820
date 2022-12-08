@@ -4,27 +4,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import graph.Transfert;
+import javax.swing.JLabel;
+
+import graph.JobDone;
 
 public class Code 
 {
-    Transfert transfert;
+    JobDone asa;
 
 ///constructor
-    public Code(Transfert transfert)
+    public Code(JobDone asa)
     {
-        this.transfert = transfert;
+        this.asa = asa;
     }
     public Code(){}
 
 ///fonctions
-    public void transfert(InputStream in , OutputStream out , boolean closeOnExit)
+    public void asaOK(InputStream in , OutputStream out , boolean closeOnExit)
     {
         try 
         {
-            if (transfert != null) 
+            if (asa != null) 
             {
-                transfert.setVisible(true);
+                asa.setVisible(true);
             }
             byte[] buf = new byte[1024];
             int n = in.read(buf);
@@ -32,10 +34,9 @@ public class Code
             {
                 out.write(buf , 0 , n);
                 n = in.read(buf);
-                if (transfert != null) 
+                if (asa != null) 
                 {
-                    transfert.setPourcentage(100);
-                    transfert.paintPourcentage(transfert.getGraphics());
+                    asa.add(new JLabel("Done !!"));
                 }
             }
             if (closeOnExit) 

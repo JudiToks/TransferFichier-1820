@@ -13,6 +13,6 @@ public class Server extends User
     {
         Server server = new Server();
         new ServerFrame("Server");
-        server.recevoir();
+        server.receved();
     }
 }

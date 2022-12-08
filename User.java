@@ -2,13 +2,14 @@ package code;
 
 import java.io.*;
 import java.net.*;
+import java.nio.file.Path;
 
 import code.Code;
 import graph.ClientFrame;
 
 public class User
 {
-    static ClientFrame clientFrame;
+    public static ClientFrame clientFrame;
 
 ///constructor
     public User(){}
@@ -17,7 +18,7 @@ public class User
         this.clientFrame = cf;
     }
 
-    public static void envoyer(String path , Code Code) throws Exception
+    public static void send(String path , Code Code) throws Exception
     {
         String[] tab = {"Server1" , "Server2" , "Server3" , "Client"};
         Socket sock = new Socket(InetAddress.getLocalHost(), 1820); 
@@ -27,15 +28,15 @@ public class User
         {
             out.writeUTF(tab[i]);
         }
-        Code.transfert(new FileInputStream(new File(path)) , out , true);
+        Code.asaOK(new FileInputStream(new File(path)) , out , true);
         sock.close();
     }
 
-    public static void recevoir() throws Exception
+    public static void receved() throws Exception
     {
         Code Code = new Code();
-        Socket sock = new ServerSocket(1820).accept();
-        ObjectInputStream in = new ObjectInputStream(sock.getInputStream());
+        Socket socket = new ServerSocket(1820).accept();
+        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
         int n = in.readInt();
         String[] tab = new String[n];
         for (int i = 0; i < tab.length; i++) 
@@ -45,9 +46,19 @@ public class User
         // String[] extension = clientFrame.getTextField().getText().split(".", 2);
         // if (extension[1].equalsIgnoreCase("png") || extension[1].equalsIgnoreCase("jpg") || extension[1].equalsIgnoreCase("jpeg")) 
         // {
-            Code.transfert(in , new FileOutputStream(new File("Sary/Recu/recu.png")) , true);
+            int isafile = 0;
+            File file = new File("Sary/Receved");
+            File[] files = file.listFiles();
+            for (int i = 0; i < files.length; i++) 
+            {
+                if (files[i].isFile()) 
+                {
+                    isafile++;
+                }
+            }
+            Code.asaOK(in , new FileOutputStream(new File("Sary/Receved/reseved"+(isafile+1)+".png"), true) , true);
         // }
-        sock.close();
+        socket.close();
 
         for (String s : tab) 
         {
