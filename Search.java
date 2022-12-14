@@ -3,6 +3,9 @@ package listener;
 import java.io.File;
 import java.io.ObjectInputStream.GetField;
 import javax.swing.*;
+
+import code.User;
+
 import java.awt.event.*;
 
 public class Search implements ActionListener
@@ -30,7 +33,7 @@ public class Search implements ActionListener
         
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) 
         {
-            file = test.getSelectedFile();
+            file = fileChooser.getSelectedFile();
         }
         System.out.println(file.getAbsolutePath());
         getTextField().setText(file.getAbsolutePath());

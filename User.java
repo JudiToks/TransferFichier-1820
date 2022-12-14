@@ -43,21 +43,17 @@ public class User
         {
             tab[i] = in.readUTF();
         }
-        // String[] extension = clientFrame.getTextField().getText().split(".", 2);
-        // if (extension[1].equalsIgnoreCase("png") || extension[1].equalsIgnoreCase("jpg") || extension[1].equalsIgnoreCase("jpeg")) 
-        // {
-            int isafile = 0;
-            File file = new File("Sary/Receved");
-            File[] files = file.listFiles();
-            for (int i = 0; i < files.length; i++) 
+        int isafile = 0;
+        File file = new File("Sary/Receved");
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) 
+        {
+            if (files[i].isFile()) 
             {
-                if (files[i].isFile()) 
-                {
-                    isafile++;
-                }
+                isafile++;
             }
-            Code.asaOK(in , new FileOutputStream(new File("Sary/Receved/reseved"+(isafile+1)+".png"), true) , true);
-        // }
+        }
+        Code.asaOK(in , new FileOutputStream(new File("Sary/Receved/reseved"+(isafile+1)+".png"), true) , true);
         socket.close();
 
         for (String s : tab) 
